@@ -1,0 +1,64 @@
+<app-head-banner [name]="name"></app-head-banner>
+<section class="our-catagories">
+    <div class="catagories-heading">
+    <h4>Our<span>Catagories</span></h4>
+    <p>View All >></p>
+</div>
+<hr>
+</section>
+
+<section class="catagories-list">
+        <div class="catagories-list-container">
+                <div class="box-catagories">
+                    <img src="/assets/cat-1.png">
+                    <h4>Fresh Fruits</h4>
+                </div>
+                <div class="box-catagories">
+                    <img src="/assets/cat-2.png">
+                    <h4>Vegetables</h4>
+                </div>
+                <div class="box-catagories">
+                    <img src="/assets/cat-3.png">
+                    <h4>Organic Spices</h4>
+                </div>
+                <div class="box-catagories">
+                    <img src="/assets/cat-4.png">
+                    <h4>Fresh Meat</h4>
+                </div>
+                <div class="box-catagories">
+                    <img src="/assets/cat-5.png">
+                    <h4>Dry Fruits</h4>
+                </div>
+            </div>
+</section>
+
+<section class="our-products">
+        <div class="products-heading">
+        <h4>Our<span>Products</span></h4>
+        <p (click)="allproducts()">View All >></p>
+    </div>
+    <hr>
+</section>
+
+<section class="product-list">
+        <div class="product-list-container">
+            <div *ngFor="let product of items">
+                <div data-aos="fade-up" class="box-product">
+                    <img [src]="product.imagepath" style="width:250px;height:171px">
+                    <div class="item-btn">
+                            <a *ngIf="!product.addedToCart" (click)="addtocart(product)">Add to Cart</a>
+                            <a *ngIf="product.addedToCart" class="cart" (click)="gotobag()">Go to Cart</a>
+                        </div>
+                    <div class="content">
+                    <h4 class="name">{{product.name}}</h4>
+                    <p>{{product.price}}</p>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half"></i>
+                    </div>
+                </div>
+            </div>
+            </div>
+</section>

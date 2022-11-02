@@ -1,0 +1,73 @@
+<app-head-banner [name]="name"></app-head-banner>
+
+<section class="product-list">
+<div class="catagories">
+    <div class="catagories-container">
+    <h4>Catagories</h4>
+    <ul>
+        <li class="active" (click)="getproducts()">All Items</li>
+        <li (click)="getitems('fruits')">Fresh Fruits</li>
+        <li (click)="getitems('vegitables')">Vegetables</li>
+        <li (click)="getitems('spices')">Organic spices</li>
+        <li (click)="getitems('meat')">Fresh Meat</li>
+        <li (click)="getitems('dryfruits')">Dry Fruits</li>
+    </ul>
+</div>
+
+</div>
+
+<div class="products" *ngIf="isproducts">
+    <mat-spinner *ngIf="common.isLoading | async" mode="indeterminate"></mat-spinner>
+        <div class="product-list-container">
+            <div *ngFor="let product of items">
+                <div data-aos="zoom-in" class="box-product">
+                    <div class="image">
+                    <img [src]="product.imagepath">
+                </div>
+                    <div class="item-btn">
+                        <a *ngIf="!product.addedToCart" (click)="addtocart(product)">Add to Cart</a>
+                        <a *ngIf="product.addedToCart" class="cart" (click)="gotobag()">Go to Cart</a>
+                    </div>
+                    <div class="content">
+                    <h4 style="text-transform:capitalize">{{product.name}}</h4>
+                    <span>{{product.weight}}</span>
+                    <span>{{product.price}}</span>
+    
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+<div class="item" *ngIf="isitem">
+        <mat-spinner *ngIf="common.isLoading | async" mode="indeterminate"></mat-spinner>
+
+        <div class="item-list-container">
+            <div *ngFor="let product of catagoryitem">
+                <div data-aos="zoom-in" class="box-product">
+                    <div class="image">
+                    <img [src]="product.imagepath">
+                </div>
+                    <div class="item-btn">
+                            <a *ngIf="!product.addedToCart" (click)="addtocart(product)">Add to Cart</a>
+                            <a *ngIf="product.addedToCart" class="cart" (click)="gotobag()">Go to Cart</a>
+                        </div>
+                    <div class="content">
+                    <h4 style="text-transform:capitalize">{{product.name}}</h4>
+                    <span>{{product.weight}}</span>
+                    <span>{{product.price}}</span>
+    
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+</section>
+
+<section class="pagination" *ngIf="isproducts">
+        <mat-paginator [length]="totalproducts"
+        [pageSize]="productsperpage"
+        aria-label="Select page" (page)="pagechanged($event)">
+</mat-paginator>
+</section>
